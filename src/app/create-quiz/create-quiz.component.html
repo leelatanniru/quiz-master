@@ -1,0 +1,30 @@
+<div class="main-div">
+<mat-card>
+		<mat-card-title>Configure your Quiz</mat-card-title>
+		<mat-card-content>
+		<div class="example-container">
+				<form class="example-container" [formGroup]="quizForm">
+					<mat-form-field>
+						<!-- <label>Course Id</label> -->
+						<input formControlName="courseId" matInput placeholder="Course Id" required>
+					</mat-form-field>
+					<mat-form-field>
+							<!-- <label>Number of questions</label> -->
+							<input formControlName="noOfQuestions" matInput placeholder="Number of questions" required>
+						</mat-form-field>
+						<mat-form-field class="example-full-width">
+								<textarea formControlName="answerKey" matInput placeholder="Enter answer key"></textarea>
+							  </mat-form-field>
+							  <mat-form-field>
+									<input formControlName="time" matInput type="number" name="usr_time" placeholder="Enter quiz duration in minutes">
+							  </mat-form-field>
+						<div class="button">
+								<button mat-flat-button color="primary" (click)="onSubmit()"> Create Quiz </button>
+						</div>
+						
+				</form>
+				
+			</div>
+		</mat-card-content>
+</mat-card>
+</div>
