@@ -1,1 +1,33 @@
-<p>create-quiz-success works!</p>
+<!-- <div class="main-div">
+        <mat-card>
+                <mat-card-title>Quiz created successfully!</mat-card-title>
+                <br/>
+                <mat-card-content>
+                <div class="example-container">
+                        <p></p>
+                    </div>
+                </mat-card-content>
+        </mat-card>
+        </div> -->
+
+
+        <div class="example-card main-div">
+                <div *ngIf="quizId; else notShow">
+              <h2>Quiz created successfully!</h2>
+              <br/>
+                <!-- <mat-card-content> -->
+                  <p>
+                        Please share the quizId <b>{{quizId}}</b> with the people who want to take the Quiz
+                  </p>
+                  <button mat-stroked-button color="primary" (click)="copy()">click here</button> to copy the Quiz Id.
+                </div>
+                <ng-template #notShow>
+                                <mat-spinner></mat-spinner>
+
+                                <p>
+                                  Creating quiz.Please wait:)
+                                </p>
+                              </ng-template>
+                <!-- </mat-card-content> -->
+                </div>
+              

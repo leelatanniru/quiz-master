@@ -1,0 +1,38 @@
+.example-container {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .example-container > * {
+    width: 100%;
+  }
+
+  .main-div{
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .mat-card-title {
+      justify-content: center;
+  }
+  .mat-form-field {
+    width: 100%;
+    min-width: 300px;
+  }
+
+  :host {
+    display: flex;
+    justify-content: center;
+    margin: 100px 0px;
+  }
+  mat-card-title,
+  mat-card-content {
+    display: flex;
+    justify-content: center;
+  }
+
+  .button {
+    display: flex;
+    justify-content: center;
+  }

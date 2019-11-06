@@ -6,25 +6,55 @@
 				<form class="example-container" [formGroup]="quizForm">
 					<mat-form-field>
 						<!-- <label>Course Id</label> -->
-						<input formControlName="courseId" matInput placeholder="Course Id" required>
+						<input formControlName="name" matInput placeholder="Quiz name">
+						<mat-error *ngIf="quizForm.controls['name'].hasError('required')">Quiz name is required</mat-error>
 					</mat-form-field>
 					<mat-form-field>
 							<!-- <label>Number of questions</label> -->
-							<input formControlName="noOfQuestions" matInput placeholder="Number of questions" required>
+							<input formControlName="description" matInput placeholder="description">
+						<mat-error *ngIf="quizForm.controls['description'].hasError('required')">Quiz description is required</mat-error>
+
+						</mat-form-field>
+					<mat-form-field>
+							<!-- <label>Number of questions</label> -->
+							<input formControlName="noOfQuestions" matInput type="number" placeholder="Number of questions" >
+						<mat-error *ngIf="quizForm.controls['noOfQuestions'].hasError('required')">No Of questions is required</mat-error>
+						<!-- <mat-error *ngIf="isValid()">No of Questions and answer key length should match</mat-error> -->
+						
 						</mat-form-field>
 						<mat-form-field class="example-full-width">
-								<textarea formControlName="answerKey" matInput placeholder="Enter answer key"></textarea>
+								<textarea formControlName="answerKey" matInput placeholder="Enter answer key" ></textarea>
+								
+						<mat-error *ngIf="quizForm.controls['answerKey'].hasError('required')">Answer key is required</mat-error>
+						
+
+
 							  </mat-form-field>
+							  
 							  <mat-form-field>
-									<input formControlName="time" matInput type="number" name="usr_time" placeholder="Enter quiz duration in minutes">
+									<input formControlName="time" matInput type="number" placeholder="Enter quiz duration in minutes">
+						<mat-error *ngIf="quizForm.controls['time'].hasError('required')">Quiz duration is required</mat-error>
+									
 							  </mat-form-field>
 						<div class="button">
-								<button mat-flat-button color="primary" (click)="onSubmit()"> Create Quiz </button>
+								<button mat-flat-button color="primary" [disabled]="!quizForm.valid || !isValid() || !isAnswerKeyValid()" (click)="onSubmit()"> Create Quiz </button>
 						</div>
+						
+						
 						
 				</form>
 				
 			</div>
+			
 		</mat-card-content>
+		<mat-card-footer class="note">
+				<div *ngIf="isEdited() && (isValid() !== true || isAnswerKeyValid() !== true)">
+						<span class="mat-error mat-form-field-subscript-wrapper">Please check the answer key you entered.</span>
+				</div>
+				<!-- <br/>
+				<div *ngIf="isAnswerKeyValid() !== true">
+						<span class="mat-error mat-form-field-subscript-wrapper">  Enter valid answer key example: 123124</span>
+				</div> -->
+		</mat-card-footer>
 </mat-card>
 </div>

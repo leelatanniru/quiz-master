@@ -53,9 +53,10 @@
           </div>
         </div>
         <div class="p-1 m-2 alert {{ evaluatedAns[question.id - 1]? 'alert-success': 'alert-danger'}}">Your answer is {{isCorrect(evaluatedAns[question.id - 1])}}.</div>
+        <div *ngIf="!evaluatedAns[question.id - 1]" class="p-1 m-2 alert alert-success">Correct answer is <b>Option {{getCorrectAns(question.id - 1)}}</b>.</div>
+
       </div>
     </div>
-    <h4 class="alert alert-info text-center">You may close this window now.</h4>
   </div>
   <hr />
   <div *ngIf="mode!='result' && mode!='review'">
@@ -64,7 +65,7 @@
     <!-- <br/> -->
     <!-- <input type="text" placeholder="Enter the key here to submit the quiz" [(ngModel)]="ansKey"/> -->
     <!-- <br/> -->
-    <button mat-button mat-raised-button color='accent'  (click)="onSubmit();">Submit Quiz </button>
+    <button mat-button mat-raised-button color='accent' (click)="onSubmit();">Submit Quiz </button>
       </div>
     
   </div>

@@ -6,10 +6,21 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./create-quiz-success.component.css']
 })
 export class CreateQuizSuccessComponent implements OnInit {
+  public quizId;
 
-  constructor() { }
+  constructor() {
+    this.quizId = localStorage.getItem('newQuizId');
+  }
 
   ngOnInit() {
+  }
+  copy() {
+    document.addEventListener('copy', (e: ClipboardEvent) => {
+      e.clipboardData.setData('text/plain', (this.quizId));
+      e.preventDefault();
+      document.removeEventListener('copy', null);
+    });
+    document.execCommand('copy');
   }
 
 }

@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 
 import { QuizService } from '../services/quiz.service';
 import { Option, Question, Quiz, QuizConfig } from '../models/index';
-import * as CryptoJS from 'crypto-js';
-import { timingSafeEqual } from 'crypto';
+// import * as CryptoJS from 'crypto-js';
+// import { timingSafeEqual } from 'crypto';
 import { __core_private_testing_placeholder__ } from '@angular/core/testing';
 
 @Component({
@@ -18,6 +18,8 @@ export class QuizComponent implements OnInit {
   public ansKey = null;
   public evaluatedAns;
   public n;
+  public ans;
+  public quizDuration: number;
   questions: any[];
   quizes: any[];
   quiz: Quiz = new Quiz(null);
@@ -54,22 +56,25 @@ export class QuizComponent implements OnInit {
   ngOnInit() {
     console.log('ngOnInit');
     console.log('is quiz started??? '+ this.quizService.isQuizStarted());
+    console.log(this.quizService.quiz);
+    this.loadQuiz();
 
     // const encryptAns = CryptoJS.AES.encrypt('1,1,1,1,1,1,1,1,1,1', 'this.encryptSecretKey').toString();
     // console.log('encryptAns    ',encryptAns);
     
-    this.quizes = this.quizService.getAll();
+    // this.quizes = this.quizService.getAll();
     
     // console.log('quizes',this.quizes);
     
     // console.log(this.quizes);
-    this.quizName = this.quizes[1].id;
-    this.loadQuiz(this.quizName);
+    // this.quizName = this.quizes[1].id;
+    // this.loadQuiz(this.quizName);
   }
 
-  loadQuiz(quizName: string) {
-    let n = 10;
+  loadQuiz() {
+    let n = this.quizService.quiz.noOfQues;
     this.questions = [];
+    this.quizDuration = this.quizService.quiz.time * 60;
 
     for(var i=0;i<n;i++) {
       const a = {};
@@ -99,7 +104,7 @@ export class QuizComponent implements OnInit {
       this.startTime = new Date();
       this.ellapsedTime = '00:00';
       this.timer = setInterval(() => { this.tick(); }, 1000);
-      this.duration = this.parseTime(this.config.duration);
+      this.duration = this.parseTime(this.quizDuration);
     // this.quizService.get(quizName).subscribe(res => {
     //   console.log('responce*********');
     //   console.log(res);
@@ -115,7 +120,7 @@ export class QuizComponent implements OnInit {
   tick() {
     const now = new Date();
     const diff = (now.getTime() - this.startTime.getTime()) / 1000;
-    if (diff >= this.config.duration) {
+    if (diff >= this.quizDuration) {
       this.onSubmit();
     }
     this.ellapsedTime = this.parseTime(diff);
@@ -178,12 +183,16 @@ export class QuizComponent implements OnInit {
 
     // Post your data to the server here. answers contains the questionId and the users' answer.
     console.log(this.quiz.questions);
+    this.ans = this.quizService.answers;
     this.evaluatedAns = this.quizService.getResult();
     console.log(this.evaluatedAns);
-    this.score = this.evaluatedAns.filter(v => v).length
+    this.score = this.evaluatedAns.filter(v => v).length;
     this.n = this.evaluatedAns.length;
     // this.quizService.evaluate(this.quiz.questions);
     this.mode = 'result';
     console.log('is quiz started??? '+ this.quizService.isQuizStarted());
+  }
+  getCorrectAns(id) {
+    return this.ans[id];
   }
 }

@@ -1,15 +1,22 @@
 <!-- <div class="container"> -->
     <mat-toolbar color="primary">
-        <a href="#" routerLink="/create-quiz"><button mat-flat-button color="primary"> <h1>Create Quiz</h1> </button></a>
-        <a href="#" routerLink="/take-quiz"><button mat-flat-button color="primary"> <h1>Take Quiz</h1> </button></a>
-        <a href="#"><button mat-flat-button color="primary"> <h1>My Quizes</h1> </button></a>
-        <a href="#"><button mat-flat-button color="primary"> <h1>My Results</h1> </button></a>
+            <a href="#" *ngIf="!isLoggedIn" ><button mat-flat-button color="primary"> <h1>The Quiz Master</h1> </button></a>
+
+        <a href="#" *ngIf="isLoggedIn" routerLink="/create-quiz"><button mat-flat-button color="primary"> <h1>Create Quiz</h1> </button></a>
+        <a href="#" *ngIf="isLoggedIn" routerLink="/take-quiz"><button mat-flat-button color="primary"> <h1>Take Quiz</h1> </button></a>
+        <a href="#" *ngIf="isLoggedIn" routerLink="/my-quizes"><button mat-flat-button color="primary"> <h1>My Quizes</h1> </button></a>
+        <a href="#" *ngIf="isLoggedIn" routerLink="/my-results"><button mat-flat-button color="primary"> <h1>My Results</h1> </button></a>
         <div class="flex-spacer"></div>
         <div style="float:right">
-            <a href="#"><button mat-flat-button color="primary"> <h1>Log out</h1> </button></a>
+            <a href="#" *ngIf="!isLoggedIn" routerLink="/login"><button mat-flat-button color="primary"> <h1>Log In</h1> </button></a>
+            <a href="#" *ngIf="!isLoggedIn" routerLink="/register"><button mat-flat-button color="primary"> <h1>Register</h1> </button></a>
+
+            <a href="#" *ngIf="isLoggedIn"><button mat-flat-button color="primary" (click)="onLogoutClick()"> <h1>Log out</h1> </button></a>
+
         </div>
 
       </mat-toolbar>
+      <flash-messages></flash-messages>
       <router-outlet></router-outlet>
   <!-- <app-quiz></app-quiz> -->
 <!-- </div> -->

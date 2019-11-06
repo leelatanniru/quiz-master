@@ -1,0 +1,49 @@
+:host {
+    justify-content: center;
+    display: flex;
+
+  }
+  .no-results {
+    align-items: center; 
+    justify-content: center;
+    margin-top: 100px;
+    font-size: 35px;
+    margin-left: 15%;
+    margin-right: 15%;
+  }
+  .example-container {
+    display: block;
+    flex-direction: row;
+  }
+  .container {
+      width: 500px;
+  }
+
+  .spinner-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 100px;
+    font-size: 24px;
+  }
+
+  th.mat-header-cell {
+    text-align: center;
+}
+td.mat-cell {
+    text-align: center;
+}
+
+  table {
+      margin-top: 40px;
+      /* margin-left: 100px;
+      margin-right: 100px; */
+
+    width: 100%;
+  }
+
+
+  tr.example-element-row:hover {
+    background: rgb(201, 214, 241);
+    cursor: pointer;
+  }

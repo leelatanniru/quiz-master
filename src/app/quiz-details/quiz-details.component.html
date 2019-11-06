@@ -1,0 +1,29 @@
+<div *ngIf="quiz ; else notShow" class="main-div">
+        <mat-card>
+                <mat-card-content>
+                    <span><h4>Quiz Name:</h4><p class="quizDetails">{{quiz.name}}</p></span>
+                    <span><h4>Quiz Id:</h4><p class="quizDetails">{{quiz.id}}</p></span>
+                    <span><h4>Description: </h4><p class="quizDetails">{{quiz.description}}</p></span>
+                    <span><h4>No of Questions</h4><p class="quizDetails">{{quiz.noOfQues}}</p></span>
+                    <span><h4>Duration in minutes</h4><p class="quizDetails">{{quiz.time}}</p></span>
+                    <span><h4>Answer Key</h4><p class="quizDetails">{{quiz.answerKey}}</p></span>
+                    <div class="button">
+                            <button mat-flat-button color="primary" (click)="onSubmit()"> Show Results </button>
+                    </div>
+
+                    </mat-card-content>
+                    </mat-card>
+                    </div>
+                    <ng-template #notShow class="example-container">
+
+                    <div class="spinner-wrapper">
+                            <span>Loading, please wait</span>
+                      
+                            <mat-progress-spinner
+                              [color]="color"
+                              [mode]="mode"
+                              [diameter]="14 "
+                              [value]="value">
+                            </mat-progress-spinner>
+                          </div>
+                  </ng-template>
